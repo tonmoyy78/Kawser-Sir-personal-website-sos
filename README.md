@@ -89,11 +89,5 @@ See `DEPLOYMENT.md` for detailed instructions.
 
 This project is dedicated to all UNMOs who served in MINURSO.
 
-## Contact
-
-- Email 1: kawser_ahmed2000@yahoo.com
-- Email 2: kawser_70@hotmail.com
-
----
 
 **Note:** This website uses client-side storage (localStorage) for admin panel data. For production use, consider implementing a backend database.
