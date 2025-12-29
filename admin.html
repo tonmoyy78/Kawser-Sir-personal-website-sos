@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Scent of Sahara</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-box">
+                <h1>🔐 Admin Panel</h1>
+                <p class="login-subtitle">Scent of Sahara - Content Management</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required placeholder="Enter password">
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <p class="login-hint">Default: admin / admin123</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>📊 Admin Panel</h2>
+                <button id="logoutBtn" class="btn-logout">Logout</button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="home">🏠 Home Page</a>
+                <a href="#" class="nav-item" data-section="geography">🗺️ Geography</a>
+                <a href="#" class="nav-item" data-section="history">📜 History</a>
+                <a href="#" class="nav-item" data-section="people">👥 People & Culture</a>
+                <a href="#" class="nav-item" data-section="duty">🎖️ My Duty</a>
+                <a href="#" class="nav-item" data-section="diary">📔 Diary</a>
+                <a href="#" class="nav-item" data-section="gallery">📸 Photo Gallery</a>
+                <a href="#" class="nav-item" data-section="thoughts">💭 My Thoughts</a>
+                <a href="#" class="nav-item" data-section="settings">⚙️ Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1 id="pageTitle">Home Page Editor</h1>
+                <div class="header-actions">
+                    <div id="loadingIndicator" style="display: none; color: var(--admin-primary); margin-right: 1rem;">
+                        <span>⏳ Loading content...</span>
+                    </div>
+                    <button id="previewBtn" class="btn-secondary">👁️ Preview</button>
+                    <button id="saveBtn" class="btn-primary">💾 Save Changes</button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Home Page Editor -->
+                <div id="homeEditor" class="editor-section active">
+                    <div class="editor-card">
+                        <h3>Hero Section</h3>
+                        <div class="form-group">
+                            <label>Hero Title</label>
+                            <input type="text" id="heroTitle" placeholder="Scent of Sahara">
+                        </div>
+                        <div class="form-group">
+                            <label>Hero Subtitle</label>
+                            <textarea id="heroSubtitle" rows="2" placeholder="A tribute to the memories..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Hero Description</label>
+                            <textarea id="heroDescription" rows="3" placeholder="This site is dedicated..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="editor-card">
+                        <h3>Stats Section</h3>
+                        <div class="stats-editor">
+                            <div class="stat-editor-item">
+                                <label>Stat 1 - Value</label>
+                                <input type="text" id="stat1Value" placeholder="285,000">
+                                <label>Stat 1 - Label</label>
+                                <input type="text" id="stat1Label" placeholder="Square Kilometers">
+                            </div>
+                            <div class="stat-editor-item">
+                                <label>Stat 2 - Value</label>
+                                <input type="text" id="stat2Value" placeholder="272,211">
+                                <label>Stat 2 - Label</label>
+                                <input type="text" id="stat2Label" placeholder="Population (1995)">
+                            </div>
+                            <div class="stat-editor-item">
+                                <label>Stat 3 - Value</label>
+                                <input type="text" id="stat3Value" placeholder="4">
+                                <label>Stat 3 - Label</label>
+                                <input type="text" id="stat3Label" placeholder="Districts">
+                            </div>
+                            <div class="stat-editor-item">
+                                <label>Stat 4 - Value</label>
+                                <input type="text" id="stat4Value" placeholder="100+">
+                                <label>Stat 4 - Label</label>
+                                <input type="text" id="stat4Label" placeholder="Photos">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="editor-card">
+                        <h3>Welcome Section</h3>
+                        <div class="form-group">
+                            <label>Welcome Text</label>
+                            <textarea id="welcomeText" rows="4" placeholder="This is a site dedicated..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Geography Editor -->
+                <div id="geographyEditor" class="editor-section">
+                    <div class="editor-card">
+                        <h3>Geography Content</h3>
+                        <div class="form-group">
+                            <label>Overview</label>
+                            <textarea id="geoOverview" rows="5" class="rich-text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Topographical Zones</label>
+                            <textarea id="geoTopo" rows="6" class="rich-text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Fact Box</label>
+                            <textarea id="geoFacts" rows="5" class="rich-text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Districts and Cities</label>
+                            <textarea id="geoDistricts" rows="4" class="rich-text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Typical Sahara Landscape</label>
+                            <textarea id="geoSahara" rows="4" class="rich-text"></textarea>
+                        </div>
+                    </div>
+                    <div class="editor-card">
+                        <h3>Geography Images</h3>
+                        <div class="image-upload-section">
+                            <input type="file" id="geoImageUpload" multiple accept="image/*" style="display: none;">
+                            <button type="button" class="btn-upload" onclick="document.getElementById('geoImageUpload').click()">
+                                📷 Upload Images
+                            </button>
+                            <div id="geoImagesList" class="images-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Editor -->
+                <div id="historyEditor" class="editor-section">
+                    <div class="editor-card">
+                        <h3>History Content</h3>
+                        <div class="form-group">
+                            <label>Early History</label>
+                            <textarea id="histEarly" rows="6" class="rich-text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Timeline Items</label>
+                            <div id="timelineItems" class="timeline-editor"></div>
+                            <button type="button" class="btn-add" id="addTimelineItem">+ Add Timeline Item</button>
+                        </div>
+                    </div>
+                    <div class="editor-card">
+                        <h3>History Images</h3>
+                        <div class="image-upload-section">
+                            <input type="file" id="histImageUpload" multiple accept="image/*" style="display: none;">
+                            <button type="button" class="btn-upload" onclick="document.getElementById('histImageUpload').click()">
+                                📷 Upload Images
+                            </button>
+                            <div id="histImagesList" class="images-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- People & Culture Editor -->
+                <div id="peopleEditor" class="editor-section">
+                    <div class="editor-card">
+                        <h3>People & Culture Content</h3>
+                        <div class="form-group">
+                            <label>Content Sections</label>
+                            <div id="peopleSections" class="sections-editor"></div>
+                            <button type="button" class="btn-add" id="addPeopleSection">+ Add Section</button>
+                        </div>
+                    </div>
+                    <div class="editor-card">
+                        <h3>People & Culture Images</h3>
+                        <div class="image-upload-section">
+                            <input type="file" id="peopleImageUpload" multiple accept="image/*" style="display: none;">
+                            <button type="button" class="btn-upload" onclick="document.getElementById('peopleImageUpload').click()">
+                                📷 Upload Images
+                            </button>
+                            <div id="peopleImagesList" class="images-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duty Editor -->
+                <div id="dutyEditor" class="editor-section">
+                    <div class="editor-card">
+                        <h3>Duty Content</h3>
+                        <div class="form-group">
+                            <label>Content Sections</label>
+                            <div id="dutySections" class="sections-editor"></div>
+                            <button type="button" class="btn-add" id="addDutySection">+ Add Section</button>
+                        </div>
+                    </div>
+                    <div class="editor-card">
+                        <h3>Duty Images</h3>
+                        <div class="image-upload-section">
+                            <input type="file" id="dutyImageUpload" multiple accept="image/*" style="display: none;">
+                            <button type="button" class="btn-upload" onclick="document.getElementById('dutyImageUpload').click()">
+                                📷 Upload Images
+                            </button>
+                            <div id="dutyImagesList" class="images-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diary Editor -->
+                <div id="diaryEditor" class="editor-section">
+                    <div class="editor-card">
+                        <h3>Diary Entries</h3>
+                        <div id="diaryEntries" class="entries-editor"></div>
+                        <button type="button" class="btn-add" id="addDiaryEntry">+ Add Diary Entry</button>
+                    </div>
+                    <div class="editor-card">
+                        <h3>Diary Images</h3>
+                        <div class="image-upload-section">
+                            <input type="file" id="diaryImageUpload" multiple accept="image/*" style="display: none;">
+                            <button type="button" class="btn-upload" onclick="document.getElementById('diaryImageUpload').click()">
+                                📷 Upload Images
+                            </button>
+                            <div id="diaryImagesList" class="images-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Editor -->
+                <div id="galleryEditor" class="editor-section">
+                    <div class="editor-card">
+                        <h3>Photo Gallery Management</h3>
+                        <div class="image-upload-section">
+                            <input type="file" id="galleryImageUpload" multiple accept="image/*" style="display: none;">
+                            <button type="button" class="btn-upload" onclick="document.getElementById('galleryImageUpload').click()">
+                                📷 Upload Multiple Images
+                            </button>
+                            <div id="galleryImagesList" class="images-list gallery-grid-admin"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thoughts Editor -->
+                <div id="thoughtsEditor" class="editor-section">
+                    <div class="editor-card">
+                        <h3>Thoughts Content</h3>
+                        <div class="form-group">
+                            <label>Murphy's Laws</label>
+                            <div id="murphyLaws" class="laws-editor"></div>
+                            <button type="button" class="btn-add" id="addMurphyLaw">+ Add Law</button>
+                        </div>
+                        <div class="form-group">
+                            <label>G6's Laws</label>
+                            <div id="g6Laws" class="laws-editor"></div>
+                            <button type="button" class="btn-add" id="addG6Law">+ Add Law</button>
+                        </div>
+                    </div>
+                    <div class="editor-card">
+                        <h3>Thoughts Images</h3>
+                        <div class="image-upload-section">
+                            <input type="file" id="thoughtsImageUpload" multiple accept="image/*" style="display: none;">
+                            <button type="button" class="btn-upload" onclick="document.getElementById('thoughtsImageUpload').click()">
+                                📷 Upload Images
+                            </button>
+                            <div id="thoughtsImagesList" class="images-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Editor -->
+                <div id="settingsEditor" class="editor-section">
+                    <div class="editor-card">
+                        <h3>Website Settings</h3>
+                        <div class="form-group">
+                            <label>Website Title</label>
+                            <input type="text" id="siteTitle" placeholder="Scent of Sahara">
+                        </div>
+                        <div class="form-group">
+                            <label>Website Subtitle</label>
+                            <input type="text" id="siteSubtitle" placeholder="Memories of MINURSO">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Email 1</label>
+                            <input type="email" id="contactEmail1" placeholder="kawser_ahmed2000@yahoo.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Email 2</label>
+                            <input type="email" id="contactEmail2" placeholder="kawser_70@hotmail.com">
+                        </div>
+                    </div>
+                    <div class="editor-card">
+                        <h3>Change Admin Password</h3>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" id="newPassword" placeholder="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                        </div>
+                        <button type="button" class="btn-primary" id="changePasswordBtn">Change Password</button>
+                    </div>
+                    <div class="editor-card">
+                        <h3>Data Management</h3>
+                        <button type="button" class="btn-primary" id="importExistingBtn" style="width: 100%; margin-bottom: 1rem;">📥 Import Existing Website Content</button>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">This will extract all content from your current website pages and load them into the admin panel for editing.</p>
+                        <button type="button" class="btn-secondary" id="exportDataBtn">💾 Export Data</button>
+                        <button type="button" class="btn-secondary" id="importDataBtn">📤 Import Data</button>
+                        <input type="file" id="importDataFile" accept=".json" style="display: none;">
+                        <button type="button" class="btn-danger" id="resetDataBtn">🔄 Reset All Data</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
+
+
